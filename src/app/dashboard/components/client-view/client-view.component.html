@@ -1,0 +1,85 @@
+<div fxLayout="row" fxLayoutAlign="start center" class="actions">
+    <button mat-raised-button color="primary" (click)="openDialog()">
+        <mat-icon>add</mat-icon> New
+    </button>
+    <button mat-raised-button color="primary">
+        <mat-icon>summarize</mat-icon> Export
+    </button>
+</div>
+<div fxLayout="row" fxLayoutAlign="start center">
+    <mat-form-field class="search">
+        <mat-label>Search</mat-label>
+        <input matInput (keyup)="applyFilter($event)">
+        <mat-icon matSuffix class="icon-search">search</mat-icon>
+    </mat-form-field>
+    <button mat-raised-button color="info" (click)="formSearch = !formSearch">Advanced Search</button>
+</div>
+<div fxLayout="row" fxLayoutAlign="start center" *ngIf="formSearch">
+    <mat-card class="form-search">
+        <mat-form-field class="search">
+            <mat-label>Name</mat-label>
+            <input matInput (ngModel)="client.name" name="name">
+        </mat-form-field>
+        <mat-form-field class="search">
+            <mat-label>Phone</mat-label>
+            <input matInput (ngModel)="client.phone" name="phone">
+        </mat-form-field>
+        <mat-form-field class="search">
+            <mat-label>Email</mat-label>
+            <input matInput (ngModel)="client.email" name="email">
+        </mat-form-field>
+        <mat-form-field class="search">
+            <mat-label>Start date</mat-label>
+            <input matInput [matDatepicker]="startpicker" (ngModel)="client.startDate" name="startDate">
+            <mat-datepicker-toggle matSuffix [for]="startpicker"></mat-datepicker-toggle>
+            <mat-datepicker #startpicker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="search">
+            <mat-label>End date</mat-label>
+            <input matInput [matDatepicker]="endpicker" (ngModel)="client.endDate" name="endDate">
+            <mat-datepicker-toggle matSuffix [for]="endpicker"></mat-datepicker-toggle>
+            <mat-datepicker #endpicker></mat-datepicker>
+          </mat-form-field>
+        <button mat-raised-button color="primary">Ok</button>
+    </mat-card>
+</div>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z4">
+
+    <ng-container matColumnDef="shared">
+        <th mat-header-cell *matHeaderCellDef>Shared Key</th>
+        <td mat-cell *matCellDef="let element">{{element.sharedKey}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="bussines">
+        <th mat-header-cell *matHeaderCellDef>Bussines ID</th>
+        <td mat-cell *matCellDef="let element">{{element.name}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>E-mail</th>
+        <td mat-cell *matCellDef="let element">{{element.email}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef>Phone</th>
+        <td mat-cell *matCellDef="let element">{{element.phone}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="created">
+        <th mat-header-cell *matHeaderCellDef>Date Added</th>
+        <td mat-cell *matCellDef="let element">{{element.createAt}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef><mat-icon>drive_file_rename_outline</mat-icon></th>
+        <td mat-cell *matCellDef="let element"><button mat-button><mat-icon>drive_file_rename_outline</mat-icon></button></td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns; let element"></tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="100%">No data found</td>
+    </tr>
+</table>

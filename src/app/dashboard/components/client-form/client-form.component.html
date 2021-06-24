@@ -1,0 +1,46 @@
+<mat-card class="modal-card">
+    <form #form="ngForm" class="form" (ngSubmit)="onSubmint(form)">
+        <mat-card-header>
+            <h4>New Client</h4>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content class="card-content">
+
+            <div fxLayout="row" fxLayoutAlign="space-between" fxLayout.xs="column">
+                <mat-form-field class="form-control">
+                    <mat-label>Name</mat-label>
+                    <input matInput (ngModel)="client.name" name="name" required>
+                </mat-form-field>
+                <mat-form-field class="form-control">
+                    <mat-label>Phone</mat-label>
+                    <input matInput type="number" (ngModel)="client.phone" name="phone" required>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between" fxLayout.xs="column">
+                <mat-form-field class="form-control">
+                    <mat-label>Email</mat-label>
+                    <input matInput type="email" (ngModel)="client.email" name="email" required>
+                </mat-form-field>
+                <mat-form-field class="form-control">
+                    <mat-label>Start date</mat-label>
+                    <input matInput [matDatepicker]="startpicker" (ngModel)="client.startDate" name="startDate"
+                        required>
+                    <mat-datepicker-toggle matSuffix [for]="startpicker"></mat-datepicker-toggle>
+                    <mat-datepicker #startpicker></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between" fxLayout.xs="column">
+                <mat-form-field class="form-control">
+                    <mat-label>End date</mat-label>
+                    <input matInput [matDatepicker]="endpicker" (ngModel)="client.endDate" name="endDate" required>
+                    <mat-datepicker-toggle matSuffix [for]="endpicker"></mat-datepicker-toggle>
+                    <mat-datepicker #endpicker></mat-datepicker>
+                </mat-form-field>
+            </div>
+
+        </mat-card-content>
+        <mat-card-footer class="card-footer">
+            <button mat-raised-button color="primary" type="submit">Ok</button>
+        </mat-card-footer>
+    </form>
+</mat-card>

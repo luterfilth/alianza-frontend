@@ -1,0 +1,29 @@
+<mat-toolbar class="mat-elevation-z8">
+  <button mat-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+    <mat-icon>home</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+
+  <img class="logo" src="../../assets/img/alianza-logo.png">
+
+  <button mat-button class="menu-button parent">
+    <mat-icon>person</mat-icon>
+    <span>Clients</span>
+  </button>
+  <mat-divider></mat-divider>
+  <button routerLink="/client" mat-button class="menu-button">
+    <span>Clients</span>
+  </button>
+  <button mat-button class="menu-button">
+    <span>Clients look history</span>
+  </button>
+  <button mat-button class="menu-button">
+    <span>Emergency PIN <br>configuration</span>
+  </button>
+  <button mat-button class="menu-button">
+    <span>Emergency PIN history</span>
+  </button>
+
+</mat-sidenav>
